@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mayvee Venus Tan</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li class="nav-link"><a href="#">Home</a></li>
+        <li><a href="my-work.html">My Work</a></li>
+        <li><a href="#">About Me</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Mayvee Venus</h1>
+    <p class="tagline">Scripted, Edited, Made With Feeling</p>
+
+    <section class="gallery">
+        <a href="my-work.html" class="polaroid">
+        <img src="assets/gabby.png" alt="My Work">
+        </a>
+        <div class="arrow">
+            <img src="assets/arrow-right.png" alt="arrow-right">
+            <p>My Work</p>
+            <img src="assets/flower2.png" alt="flower2">
+        </div>
+        <a href="#" class="polaroid">
+        <img src="assets/thrumylens.png" alt="About Me">
+        </a>
+        <div class="arrow">
+        <img src="assets/arrow-right.png" alt="arrow-right">
+        <p>About me</p>
+        </div>
+        <div class="arrow">
+            <p>Contact</p>
+            <img src="assets/arrow-left.png" alt="arrow-right">
+            <img src="assets/flower2.png" alt="flower2">
+        </div>
+        <a href="#" class="polaroid">
+        <img src="assets/you.png" alt="Contact">
+        </a>
+        <img src="assets/flower.jpg" alt="flower" id="flower1">       
+        <img src="assets/book.png" alt="bookflower" class="bookflower">
+        <img src="assets/traveltix.png" alt="traveltix" class="traveltix">
+        <img src="assets/ticket.png" alt="ticket" class="ticket">
+    </section>
+  </main>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".polaroid").forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add("show");
+        }, index * 200);
+      });
+    });
+  </script>
+</body>
+</html>
