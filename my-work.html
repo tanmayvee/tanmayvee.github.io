@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Work - Mayvee Venus Tan</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+    <header>
+        <nav>
+            <div class="mobile-nav-toggle" id="mobile-toggle">
+                <div class="bar top"></div>
+                <div class="bar middle"></div>
+                <div class="bar bottom"></div>
+              </div>
+            <ul id="nav-links">
+              <li class="nav-link"><a href="index.html">Home</a></li>
+              <li><a href="my-work.html">My Work</a></li>
+              <li><a href="about-me.html">About Me</a></li>
+              <li><a href="contact-me.html">Contact</a></li>
+            </ul>
+          </nav>
+    </header>
+    
+    
+  <main>
+    <h1>My Work</h1>
+
+    <section class="work-entry fade-in">
+      <img src="assets/thrumylens.png" alt="Through My Lens video thumbnail">
+      <p>
+        <strong><a href="https://www.youtube.com/watch?v=s6CuF3ovv24" target="_blank">Through My Lens</a></strong>: Directed and edited this short feature, which explores identity and daily life with poetic pacing. I collaborated closely with the subject to bring out intimate, authentic moments.
+      </p>
+    </section>
+
+    <section class="work-entry fade-in">
+      <img src="assets/gabby.png" alt="Gabby Le video thumbnail">
+      <p>
+        <strong><a href="https://www.youtube.com/watch?v=XV4JrFcxcEE" target="_blank">Gabby Le</a></strong>: Edited this dreamy vlog and stylized transitions to reflect the creator’s vision. Worked hands-on with the creator for storytelling structure and pacing.
+      </p>
+    </section>
+
+    <section class="work-entry fade-in">
+      <img src="assets/you.png" alt="YouTube channel">
+      <p>
+        <strong><a href="https://www.youtube.com/@mayveeee">My YouTube Channel</a></strong>: Created, edited, and published lifestyle and fashion content that emphasizes aesthetic storytelling. Focused on authenticity and relatable voice.
+      </p>
+    </section>
+
+    <section class="work-entry fade-in">
+      <img src="assets/lovenote.png" alt="Lovenote Bride">
+      <p>
+        <strong><a href="https://lovenotebride.com/">Lovenote Bride</a></strong>: Managed editing and social marketing strategy for a boutique bridal brand. Ensured content aligned with branding while enhancing engagement through reels and stylized visuals.
+      </p>
+    </section>
+
+    <section class="work-entry fade-in">
+      <img src="assets/gallery.png" alt="Vancouver Art Gallery">
+      <p>
+        <strong><a href="https://www.instagram.com/mayveeeeeeeeee/p/CoJj6awuCUC/">Vancouver Art Gallery Media Association</a></strong>: Scouted and selected for the Media Association Ambassador program based on creative work and community engagement. Helped promote exhibits through social media storytelling.
+      </p>
+    </section>
+
+    <section class="work-entry fade-in">
+      <img src="assets/instagram.png" alt="Instagram Profile">
+      <p>
+        <strong><a href="https://www.instagram.com/mayveeeeeeeeee/">Instagram Creator</a></strong>: Grew to 7.5k followers with consistent, high-quality aesthetic posts. Focused on fashion, lifestyle, and behind-the-scenes storytelling.
+      </p>
+    </section>
+
+    <section class="work-entry fade-in">
+      <img src="assets/tiktok.png" alt="TikTok content">
+      <p>
+        <strong>TikTok Copywriter</strong>: Wrote engaging, viral-friendly scripts for short-form content across multiple creators. Specialized in humor, relatability, and attention-grabbing hooks.
+      </p>
+    </section>
+
+  </main>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".fade-in").forEach((el, index) => {
+        el.style.animationDelay = `${0.2 * index}s`;
+        el.classList.add("fade-in");
+      });
+    });
+    const cursor = document.getElementById("cursor");
+    const cursorRing = document.getElementById("cursor-ring");
+
+    window.addEventListener("mousemove", e => {
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
+      cursorRing.style.left = `${e.clientX}px`;
+      cursorRing.style.top = `${e.clientY}px`;
+    });
+
+    // Detect hover over interactive elements
+    document.querySelectorAll('a, button, .nav-link').forEach(el => {
+      el.addEventListener("mouseenter", () => {
+        cursorRing.style.opacity = "1";
+        cursorRing.style.transform = "translate(-50%, -50%) scale(1.3)";
+      });
+      el.addEventListener("mouseleave", () => {
+        cursorRing.style.opacity = "0";
+        cursorRing.style.transform = "translate(-50%, -50%) scale(1)";
+      });
+    });
+
+    const navToggle = document.getElementById('mobile-toggle');
+const navLinks = document.getElementById('nav-links');
+
+navToggle?.addEventListener('click', () => {
+  navToggle.classList.toggle('active');
+  navLinks.classList.toggle('show');
+});
+  </script>
+</body>
+</html>

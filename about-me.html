@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Work - Mayvee Venus Tan</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="cursor-ring"></div>
+  <div id="cursor"></div>
+
+  <header>
+    <nav>
+      <div class="mobile-nav-toggle" id="mobile-toggle">
+        <div class="bar top"></div>
+        <div class="bar middle"></div>
+        <div class="bar bottom"></div>
+      </div>
+      <ul id="nav-links">
+        <li class="nav-link"><a href="index.html">Home</a></li>
+        <li><a href="my-work.html">My Work</a></li>
+        <li><a href="about-me.html">About Me</a></li>
+        <li><a href="contact-me.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1>About Me</h1>
+  <main>
+    <div class="about-container">
+      <img src="assets/about-photo.jpg" alt="Portrait of Mayvee Venus Tan" class="about-image fade-in" />
+      <hr class="soft-divider fade-in" />
+      <div class="about-text">
+        <p class ="fade-in">
+          I’m Mayvee Venus Tan — a visual storyteller, creative director, and editor driven by emotion, movement, and memory. My work thrives at the intersection of aesthetic and intimacy. From dreamy fashion cuts to poetic lifestyle montages, I build every piece to make people feel — and remember.
+        </p>
+        <p class ="fade-in">
+          I started creating videos in my bedroom using whatever camera I could get my hands on, slowly developing a language rooted in softness, texture, and flow. That DIY spirit still fuels my work today, whether I’m scripting for creators, editing short films, or curating a brand’s visual identity. Every frame I touch has intention.
+        </p>
+        <p class ="fade-in">
+          As someone deeply observant and detail-oriented, I pick up on the nuances of light, silence, and body language. That empathy guides how I shape narratives. I believe good editing isn’t flashy — it’s invisible. You don’t just see my edits; you feel them.
+        </p>
+        <p class ="fade-in">
+          Outside of client work, I share slices of life on YouTube and Instagram, where I explore personal projects around travel, fashion, and culture. I’ve been honored to be selected as a member ofthe Vancouver Art Gallery Media Association and trusted by brands like Lovenote Bride for my vision. But at my core, I’m just a girl who loves the click of a timeline snapping into place.
+        </p>
+        <p class ="fade-in">
+          My goal? To keep creating with feeling — always. Whether I’m editing in silence at 2 a.m. or laughing on set, I bring heart into every step.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".fade-in").forEach((el, index) => {
+        el.style.animationDelay = `${0.2 * index}s`;
+        el.classList.add("fade-in");
+      });
+    });
+    const cursor = document.getElementById("cursor");
+    const cursorRing = document.getElementById("cursor-ring");
+
+    window.addEventListener("mousemove", e => {
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
+      cursorRing.style.left = `${e.clientX}px`;
+      cursorRing.style.top = `${e.clientY}px`;
+    });
+
+    // Detect hover over interactive elements
+    document.querySelectorAll('a, button, .nav-link').forEach(el => {
+      el.addEventListener("mouseenter", () => {
+        cursorRing.style.opacity = "1";
+        cursorRing.style.transform = "translate(-50%, -50%) scale(1.3)";
+      });
+      el.addEventListener("mouseleave", () => {
+        cursorRing.style.opacity = "0";
+        cursorRing.style.transform = "translate(-50%, -50%) scale(1)";
+      });
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".fade-in").forEach((el, index) => {
+    el.style.animationDelay = `${0.2 * index}s`;
+    el.classList.add("fade-in");
+  });
+});
+const navToggle = document.getElementById('mobile-toggle');
+const navLinks = document.getElementById('nav-links');
+
+navToggle?.addEventListener('click', () => {
+  navToggle.classList.toggle('active');
+  navLinks.classList.toggle('show');
+});
+  </script>
+</body>
+</html>

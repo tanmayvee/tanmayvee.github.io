@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Me - Mayvee Venus Tan</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="cursor-ring"></div>
+  <div id="cursor"></div>
+
+  <div class="page-fade">
+    <header>
+        <nav>
+            <div class="mobile-nav-toggle" id="mobile-toggle">
+                <div class="bar top"></div>
+                <div class="bar middle"></div>
+                <div class="bar bottom"></div>
+              </div>
+            <ul id="nav-links">
+              <li class="nav-link"><a href="index.html">Home</a></li>
+              <li><a href="my-work.html">My Work</a></li>
+              <li><a href="about-me.html">About Me</a></li>
+              <li><a href="contact-me.html">Contact</a></li>
+            </ul>
+          </nav>
+    </header>
+    <h1>Contact Me</h1>
+    <main class="contact-container fade-in">
+      <p>Whether it's a collaboration, content request, or a good story to tell — I’d love to hear from you.</p>
+      
+      <form id="contact-form" action="https://formspree.io/f/xgvkejlr" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="_replyto" placeholder="Your Email" required />
+        <textarea name="message" rows="6" placeholder="Your Message..." required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      
+      <div id="thank-you" style="display:none; font-size: 1.4rem; margin-top: 2rem; font-family: 'Georgia', serif;">
+        💌 Thanks! I’ll be in touch with you soon.
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Fade in animation
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".fade-in").forEach((el, index) => {
+        el.style.animationDelay = `${0.2 * index}s`;
+        el.classList.add("fade-in");
+      });
+    });
+
+    // Cursor tracker
+    const cursor = document.getElementById("cursor");
+    const cursorRing = document.getElementById("cursor-ring");
+
+    window.addEventListener("mousemove", e => {
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
+      cursorRing.style.left = `${e.clientX}px`;
+      cursorRing.style.top = `${e.clientY}px`;
+    });
+
+    document.querySelectorAll('a, button, .nav-link').forEach(el => {
+      el.addEventListener("mouseenter", () => {
+        cursorRing.style.opacity = "1";
+        cursorRing.style.transform = "translate(-50%, -50%) scale(1.3)";
+      });
+      el.addEventListener("mouseleave", () => {
+        cursorRing.style.opacity = "0";
+        cursorRing.style.transform = "translate(-50%, -50%) scale(1)";
+      });
+    });
+
+    const form = document.getElementById('contact-form');
+  const thankYou = document.getElementById('thank-you');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      form.style.display = 'none';
+      thankYou.style.display = 'block';
+
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 5000);
+    } else {
+      thankYou.innerHTML = "Oops! Something went wrong. Try again.";
+      thankYou.style.display = 'block';
+    }
+  });
+  const navToggle = document.getElementById('mobile-toggle');
+const navLinks = document.getElementById('nav-links');
+
+navToggle?.addEventListener('click', () => {
+  navToggle.classList.toggle('active');
+  navLinks.classList.toggle('show');
+});
+  </script>
+</body>
+</html>

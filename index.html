@@ -8,19 +8,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
   <header>
     <nav>
-      <ul>
-        <li class="nav-link"><a href="#">Home</a></li>
+      <div class="mobile-nav-toggle" id="mobile-toggle">
+        <div class="bar top"></div>
+        <div class="bar middle"></div>
+        <div class="bar bottom"></div>
+      </div>
+      <ul id="nav-links">
+        <li class="nav-link"><a href="index.html">Home</a></li>
         <li><a href="my-work.html">My Work</a></li>
-        <li><a href="#">About Me</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="about-me.html">About Me</a></li>
+        <li><a href="contact-me.html">Contact</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <h1>Mayvee Venus</h1>
+    <h1 id="main">Mayvee Venus</h1>
     <p class="tagline">Scripted, Edited, Made With Feeling</p>
 
     <section class="gallery">
@@ -32,7 +39,7 @@
             <p>My Work</p>
             <img src="assets/flower2.png" alt="flower2">
         </div>
-        <a href="#" class="polaroid">
+        <a href="about-me.html" class="polaroid">
         <img src="assets/thrumylens.png" alt="About Me">
         </a>
         <div class="arrow">
@@ -44,7 +51,7 @@
             <img src="assets/arrow-left.png" alt="arrow-right">
             <img src="assets/flower2.png" alt="flower2">
         </div>
-        <a href="#" class="polaroid">
+        <a href="contact-me.html" class="polaroid">
         <img src="assets/you.png" alt="Contact">
         </a>
         <img src="assets/flower.jpg" alt="flower" id="flower1">       
@@ -62,6 +69,35 @@
         }, index * 200);
       });
     });
+
+    const cursor = document.getElementById("cursor");
+    const cursorRing = document.getElementById("cursor-ring");
+
+    window.addEventListener("mousemove", e => {
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
+      cursorRing.style.left = `${e.clientX}px`;
+      cursorRing.style.top = `${e.clientY}px`;
+    });
+
+    // Detect hover over interactive elements
+    document.querySelectorAll('a, button, .nav-link').forEach(el => {
+      el.addEventListener("mouseenter", () => {
+        cursorRing.style.opacity = "1";
+        cursorRing.style.transform = "translate(-50%, -50%) scale(1.3)";
+      });
+      el.addEventListener("mouseleave", () => {
+        cursorRing.style.opacity = "0";
+        cursorRing.style.transform = "translate(-50%, -50%) scale(1)";
+      });
+    });
+    const navToggle = document.getElementById('mobile-toggle');
+const navLinks = document.getElementById('nav-links');
+
+navToggle?.addEventListener('click', () => {
+  navToggle.classList.toggle('active');
+  navLinks.classList.toggle('show');
+});
   </script>
 </body>
 </html>
