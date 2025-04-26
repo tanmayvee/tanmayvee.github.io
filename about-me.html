@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
 </head>
 <body>
+  <canvas id="bg-fireworks"></canvas>
   <div id="cursor-ring"></div>
   <div id="cursor"></div>
 
@@ -30,23 +31,23 @@
   <h1>About Me</h1>
   <main>
     <div class="about-container">
-      <img src="assets/about-photo.jpg" alt="Portrait of Mayvee Venus Tan" class="about-image fade-in" />
+      <img src="assets/camerayou.jpg" alt="Portrait of Mayvee Venus Tan" class="about-image fade-in" />
       <hr class="soft-divider fade-in" />
       <div class="about-text">
         <p class ="fade-in">
-          I’m Mayvee Venus Tan — a visual storyteller, creative director, and editor driven by emotion, movement, and memory. My work thrives at the intersection of aesthetic and intimacy. From dreamy fashion cuts to poetic lifestyle montages, I build every piece to make people feel — and remember.
+          I’m Mayvee Tan — a creative director, scriptwriter, and editor passionate about creating content that informs, inspires, and connects. I focus on sharing real experiences and practical knowledge, turning ideas into stories that people can learn from and relate to. Whether it's lifestyle advice or creative insights, I build each piece to leave people feeling a little more informed — and a little more inspired.
         </p>
         <p class ="fade-in">
-          I started creating videos in my bedroom using whatever camera I could get my hands on, slowly developing a language rooted in softness, texture, and flow. That DIY spirit still fuels my work today, whether I’m scripting for creators, editing short films, or curating a brand’s visual identity. Every frame I touch has intention.
+          I found my love for creating videos after being denied from a photography class, my greatest passion at the time. What started as a surprise quickly turned into an even greater passion, as I discovered how naturally storytelling, editing, and scripting brought out my creativity and voice. Today, whether I’m crafting scripts, editing short films, or helping creators shape their visual story, I focus on bringing energy, personality, and intention into every project.
         </p>
         <p class ="fade-in">
-          As someone deeply observant and detail-oriented, I pick up on the nuances of light, silence, and body language. That empathy guides how I shape narratives. I believe good editing isn’t flashy — it’s invisible. You don’t just see my edits; you feel them.
+          I’m someone who notices the little things — the way light shifts, the quiet moments, the feeling behind a glance. That attention to detail shapes the way I build stories. I believe good editing isn’t about being noticed — it’s about being felt. The best work goes unnoticed, letting the emotion and meaning rise to the surface on their own.
         </p>
         <p class ="fade-in">
-          Outside of client work, I share slices of life on YouTube and Instagram, where I explore personal projects around travel, fashion, and culture. I’ve been honored to be selected as a member ofthe Vancouver Art Gallery Media Association and trusted by brands like Lovenote Bride for my vision. But at my core, I’m just a girl who loves the click of a timeline snapping into place.
+          Outside of client work, I use my YouTube channel as a space to experiment, refine my scriptwriting and editing, and push my creative skills through personal projects across travel, fashion, and culture.I’ve been honored to be selected as a member of the Vancouver Art Gallery Media Association and trusted by brands like Lovenote Bride for my creative vision. At the heart of it, I’m passionate about building stories that feel informative, impactful, and true.
         </p>
         <p class ="fade-in">
-          My goal? To keep creating with feeling — always. Whether I’m editing in silence at 2 a.m. or laughing on set, I bring heart into every step.
+          My goal is to always create with purpose. Whether I'm editing late into the night or collaborating on set, I put thought and intention into every step of the process.
         </p>
       </div>
     </div>
@@ -94,6 +95,80 @@ navToggle?.addEventListener('click', () => {
   navToggle.classList.toggle('active');
   navLinks.classList.toggle('show');
 });
+
+const canvas = document.getElementById("bg-fireworks");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+
+class StarParticle {
+  constructor() {
+    this.reset();
+  }
+
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 1.2 + 0.5;
+    this.alpha = 0;
+    this.fadeIn = true;
+    this.dy = -0.15 - Math.random() * 0.2;
+    this.dx = (Math.random() - 0.5) * 0.1;
+    this.lifetime = 0;
+    this.maxLife = 200 + Math.random() * 200;
+    this.delay = Math.random() * 100;
+  }
+
+  update() {
+    this.lifetime++;
+
+    if (this.lifetime < this.delay) return;
+
+    this.x += this.dx;
+    this.y += this.dy;
+
+    if (this.fadeIn) {
+      this.alpha += 0.015;
+      if (this.alpha >= 0.6) this.fadeIn = false;
+    } else {
+      this.alpha -= 0.002;
+    }
+
+    if (this.y < -10 || this.alpha <= 0 || this.lifetime > this.maxLife) {
+      this.reset();
+    }
+  }
+
+  draw() {
+    if (this.lifetime < this.delay) return;
+    const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 2);
+    gradient.addColorStop(0, `rgba(255, 255, 255, ${this.alpha})`);
+    gradient.addColorStop(1, `rgba(255, 255, 255, 0)`);
+
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+    ctx.fillStyle = gradient;
+    ctx.fill();
+  }
+}
+
+const particles = Array.from({ length: 130 }, () => new StarParticle());
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    p.update();
+    p.draw();
+  });
+  requestAnimationFrame(animate);
+}
+
+animate();
   </script>
 </body>
 </html>

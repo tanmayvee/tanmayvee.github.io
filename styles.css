@@ -64,7 +64,7 @@ h1 {
 
 .tagline {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.9rem;
     font-family: 'Times New Roman', Times, serif;
     margin-bottom: 2rem;
 }
@@ -78,6 +78,10 @@ h1 {
     row-gap: 60px;
     justify-content: center;
     padding: 40px;
+}
+
+.spacer {
+   padding-bottom: 40px;
 }
 
 
